@@ -103,13 +103,34 @@
         /* ============================================
            NAVIGATION
         ============================================ */
+        .rotary-wheel {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            animation: spin-slow 12s linear infinite;
+        }
+
+        .rotary-wheel svg {
+            width: 45px;
+            height: 45px;
+            display: block;
+        }
+
+        
+        /* Slightly slower, smoother spin than the old icon */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+                
+        
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1rem 1rem 1rem 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -190,145 +211,161 @@
             transition: var(--transition);
         }
 
-        /* ============================================
-           HERO SECTION
-        ============================================ */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+/* ============================================
+   HERO SECTION
+============================================ */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;// Random hero image on each page load
+(function() {
+    const heroImages = [
+        'images/hero/hero1.webp',
+        'images/hero/hero2.webp',
+        'images/hero/hero3.webp',
+        'images/hero/hero4.webp',
+        'images/hero/hero5.webp',
+        'images/hero/hero6.webp'
+    ];
+    const randomIndex = Math.floor(Math.random() * heroImages.length);
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
+    }
+})();
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            /* Placeholder gradient - replace with your actual hero photo */
-            background: linear-gradient(135deg, #003366 0%, #0050A0 40%, #1a6bc4 70%, #003366 100%);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+}
 
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                180deg,
-                rgba(0,0,0,0.3) 0%,
-                rgba(0,0,0,0.1) 40%,
-                rgba(0,51,102,0.6) 100%
-            );
-        }
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url('images/hero/hero1.webp');
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: var(--white);
-            max-width: 900px;
-            padding: 0 2rem;
-        }
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.4) 40%,
+        rgba(0,51,102,0.8) 100%
+    );
+}
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(247, 168, 27, 0.2);
-            border: 1px solid rgba(247, 168, 27, 0.4);
-            color: var(--rotary-gold);
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    max-width: 900px;
+    padding: 0 2rem;
+}
 
-        .hero h1 span {
-            color: var(--rotary-gold);
-        }
+.hero-badge {
+    display: inline-block;
+    background: rgba(247, 168, 27, 0.2);
+    border: 1px solid rgba(247, 168, 27, 0.4);
+    color: var(--rotary-gold);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
 
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            font-weight: 300;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.hero h1 span {
+    color: var(--rotary-gold);
+}
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-        }
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .btn-primary {
-            background: var(--rotary-gold);
-            color: var(--rotary-blue);
-        }
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-        .btn-primary:hover {
-            background: #e8990f;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(247, 168, 27, 0.4);
-        }
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
 
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.5);
-        }
+.btn-primary {
+    background: var(--rotary-gold);
+    color: var(--rotary-blue);
+}
 
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--white);
-            transform: translateY(-2px);
-        }
+.btn-primary:hover {
+    background: #e8990f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(247, 168, 27, 0.4);
+}
 
-        .hero-scroll {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            color: var(--white);
-            opacity: 0.6;
-            animation: bounce 2s infinite;
-        }
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.5);
+}
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
+.btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: var(--white);
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+}
+
 
         /* ============================================
            MEETING STRIP
@@ -446,100 +483,100 @@
             font-weight: 500;
         }
 
-        /* ============================================
-           PROJECT CARDS
-        ============================================ */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
+/* ============================================
+   PROJECT CARDS
+============================================ */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
 
-        .card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            cursor: pointer;
-        }
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+}
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
 
-        .card-image {
-            height: 220px;
-            background: linear-gradient(135deg, var(--rotary-blue), var(--rotary-light-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
+.card-image {
+    height: 220px;
+    background: linear-gradient(135deg, var(--rotary-blue), var(--rotary-light-blue));
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+}
 
-        .card-image i {
-            font-size: 3rem;
-            color: rgba(255,255,255,0.3);
-        }
+.card-image i {
+    font-size: 3rem;
+    color: rgba(255,255,255,0.3);
+}
 
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
 
-        .card:hover .card-image img {
-            transform: scale(1.05);
-        }
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
 
-        .card-tag {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--rotary-gold);
-            color: var(--rotary-blue);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+.card-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--rotary-gold);
+    color: var(--rotary-blue);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
 
-        .card-body {
-            padding: 1.5rem;
-        }
+.card-body {
+    padding: 1.5rem;
+}
 
-        .card-body h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--rotary-blue);
-        }
+.card-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--rotary-blue);
+}
 
-        .card-body p {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
+.card-body p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
 
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 1rem;
-            color: var(--rotary-light-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1rem;
+    color: var(--rotary-light-blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
 
-        .card-link:hover {
-            gap: 10px;
-            color: var(--rotary-gold);
-        }
+.card-link:hover {
+    gap: 10px;
+    color: var(--rotary-gold);
+}
+
 
         /* ============================================
            PHOTO GALLERY STRIP
@@ -663,7 +700,23 @@
         .biz-tags {
             display: flex;
             gap: 0.5rem;
-            flex-wrap: wrap;
+            flex-wrap: wrap;// Random hero image on each page load
+(function() {
+    const heroImages = [
+        'images/hero/hero1.webp',
+        'images/hero/hero2.webp',
+        'images/hero/hero3.webp',
+        'images/hero/hero4.webp',
+        'images/hero/hero5.webp',
+        'images/hero/hero6.webp'
+    ];
+    const randomIndex = Math.floor(Math.random() * heroImages.length);
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
+    }
+})();
+
             margin-bottom: 1rem;
         }
 
@@ -709,6 +762,51 @@
             opacity: 0.85;
             margin-bottom: 2rem;
         }
+
+/* ============================================
+   SPONSORS
+============================================ */
+.sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sponsor-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.sponsor-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--rotary-gold);
+}
+
+.sponsor-item img {
+    max-height: 80px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.sponsor-item:hover img {
+    transform: scale(1.05);
+}
 
         /* ============================================
            FOOTER
@@ -768,7 +866,23 @@
         }
 
         .footer-col .social-links a:hover {
-            background: var(--rotary-gold);
+            background: var(--rotary-gold);// Random hero image on each page load
+(function() {
+    const heroImages = [
+        'images/hero/hero1.webp',
+        'images/hero/hero2.webp',
+        'images/hero/hero3.webp',
+        'images/hero/hero4.webp',
+        'images/hero/hero5.webp',
+        'images/hero/hero6.webp'
+    ];
+    const randomIndex = Math.floor(Math.random() * heroImages.length);
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
+    }
+})();
+
             color: var(--rotary-blue);
         }
 
@@ -852,9 +966,30 @@
     ========================================== -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo">
-            <!-- Replace with your Rotary wheel logo -->
-            <i class="fas fa-cog fa-spin" style="font-size:1.6rem; color: var(--rotary-gold);"></i>
-            Granada Hills Rotary
+    <div class="rotary-wheel">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+            <!-- Gear teeth (outer ring) -->
+            <path d="M 89.00,50.00 L 88.85,53.43 L 95.82,54.04 L 94.83,60.32 L 88.01,58.75 L 87.09,62.05 L 85.89,65.26 L 92.33,68.00 L 89.45,73.66 L 83.44,70.06 L 81.55,72.92 L 79.42,75.61 L 84.70,80.20 L 80.20,84.70 L 75.61,79.42 L 72.92,81.55 L 70.06,83.44 L 73.66,89.45 L 68.00,92.33 L 65.26,85.89 L 62.05,87.09 L 58.75,88.01 L 60.32,94.83 L 54.04,95.82 L 53.43,88.85 L 50.00,89.00 L 46.57,88.85 L 45.96,95.82 L 39.68,94.83 L 41.25,88.01 L 37.95,87.09 L 34.74,85.89 L 32.00,92.33 L 26.34,89.45 L 29.94,83.44 L 27.08,81.55 L 24.39,79.42 L 19.80,84.70 L 15.30,80.20 L 20.58,75.61 L 18.45,72.92 L 16.56,70.06 L 10.55,73.66 L 7.67,68.00 L 14.11,65.26 L 12.91,62.05 L 11.99,58.75 L 5.17,60.32 L 4.18,54.04 L 11.15,53.43 L 11.00,50.00 L 11.15,46.57 L 4.18,45.96 L 5.17,39.68 L 11.99,41.25 L 12.91,37.95 L 14.11,34.74 L 7.67,32.00 L 10.55,26.34 L 16.56,29.94 L 18.45,27.08 L 20.58,24.39 L 15.30,19.80 L 19.80,15.30 L 24.39,20.58 L 27.08,18.45 L 29.94,16.56 L 26.34,10.55 L 32.00,7.67 L 34.74,14.11 L 37.95,12.91 L 41.25,11.99 L 39.68,5.17 L 45.96,4.18 L 46.57,11.15 L 50.00,11.00 L 53.43,11.15 L 54.04,4.18 L 60.32,5.17 L 58.75,11.99 L 62.05,12.91 L 65.26,14.11 L 68.00,7.67 L 73.66,10.55 L 70.06,16.56 L 72.92,18.45 L 75.61,20.58 L 80.20,15.30 L 84.70,19.80 L 79.42,24.39 L 81.55,27.08 L 83.44,29.94 L 89.45,26.34 L 92.33,32.00 L 85.89,34.74 L 87.09,37.95 L 88.01,41.25 L 94.83,39.68 L 95.82,45.96 L 88.85,46.57 Z" fill="#F7A81B"/>
+            <!-- Inner ring -->
+            <circle cx="50" cy="50" r="28" fill="#003366"/>
+            <!-- Spokes -->
+            <line x1="64.0" y1="50.0" x2="87.0" y2="50.0" stroke="#F7A81B" stroke-width="5" stroke-linecap="round"/>
+            <line x1="57.0" y1="62.1" x2="68.5" y2="82.0" stroke="#F7A81B" stroke-width="5" stroke-linecap="round"/>
+            <line x1="43.0" y1="62.1" x2="31.5" y2="82.0" stroke="#F7A81B" stroke-width="5" stroke-linecap="round"/>
+            <line x1="36.0" y1="50.0" x2="13.0" y2="50.0" stroke="#F7A81B" stroke-width="5" stroke-linecap="round"/>
+            <line x1="43.0" y1="37.9" x2="31.5" y2="18.0" stroke="#F7A81B" stroke-width="5" stroke-linecap="round"/>
+            <line x1="57.0" y1="37.9" x2="68.5" y2="18.0" stroke="#F7A81B" stroke-width="5" stroke-linecap="round"/>
+            <!-- Center hub -->
+            <circle cx="50" cy="50" r="14" fill="#F7A81B"/>
+            <!-- Keyhole (Rotary signature detail) -->
+            <circle cx="50" cy="50" r="6" fill="#003366"/>
+            <rect x="47.5" y="38" width="5" height="10" fill="#003366" rx="1"/>
+        </svg>
+    </div>
+    Granada Hills Rotary
+</a>
+
+
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#impact">Our Impact</a></li>
@@ -874,9 +1009,8 @@
          HERO
     ========================================== -->
     <section class="hero">
-        <div class="hero-bg">
-            <!-- Replace background gradient with: style="background-image: url('images/hero.jpg');" -->
-        </div>
+        <div class="hero-bg"></div>
+
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
             <div class="hero-badge">Est. 1948 &bull; Granada Hills, California</div>
             <h1>Service Above <span>Self</span></h1>
@@ -930,54 +1064,57 @@
         </div>
     </section>
 
-    <!-- ==========================================
-         PROJECTS
-    ========================================== -->
-    <section class="section section-light" id="projects">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Making a Difference</h2>
-                <div class="accent-line"></div>
-                <p>From local parks to international initiatives, here's how we serve.</p>
+<!-- ==========================================
+     PROJECTS
+========================================== -->
+<section class="section section-light" id="projects">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Making a Difference</h2>
+            <div class="accent-line"></div>
+            <p>From local parks to international initiatives, here's how we serve.</p>
+        </div>
+        <div class="card-grid">
+            <div class="card" data-aos="fade-up" data-aos-delay="0">
+                <div class="card-image gp-1">
+                    <div class="card-tag">Community</div>
+                    <img src="images/projects/veterans-park.webp" alt="Veteran's Park project">
+                    <i class="fas fa-flag-usa"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Veteran&rsquo;s Park</h3>
+                    <p>Honoring those who served through our ongoing park beautification and memorial project.</p>
+                    <a href="veterans-park.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="card-grid">
-                <div class="card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="card-image gp-1">
-                        <div class="card-tag">Community</div>
-                        <!-- Replace with: <img src="images/veterans-park.jpg" alt="Veteran's Park project"> -->
-                        <i class="fas fa-flag-usa"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Veteran&rsquo;s Park</h3>
-                        <p>Honoring those who served through our ongoing park beautification and memorial project.</p>
-                        <a href="veterans-park.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-image gp-2">
+                    <div class="card-tag">Environment</div>
+                    <img src="images/projects/lunch-out-of-landfills.webp" alt="Lunch Out of Landfills project">
+                    <i class="fas fa-recycle"></i>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-image gp-2">
-                        <div class="card-tag">Environment</div>
-                        <i class="fas fa-recycle"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Lunch Out of Landfills</h3>
-                        <p>Reducing school lunch waste across Granada Hills — one cafeteria at a time.</p>
-                        <a href="lunch-out-of-landfills.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="card-body">
+                    <h3>Lunch Out of Landfills</h3>
+                    <p>Reducing school lunch waste across Granada Hills — one cafeteria at a time.</p>
+                    <a href="lunch-out-of-landfills.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-image gp-3">
-                        <div class="card-tag">International</div>
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Ending Polio</h3>
-                        <p>Partnering with Rotary International to eradicate polio worldwide.</p>
-                        <a href="ending-polio.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-image gp-3">
+                    <div class="card-tag">International</div>
+                    <img src="images/projects/ending-polio.webp" alt="Ending Polio project">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Ending Polio</h3>
+                    <p>Partnering with Rotary International to eradicate polio worldwide.</p>
+                    <a href="ending-polio.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- ==========================================
          PHOTO GALLERY STRIP
@@ -995,165 +1132,186 @@
     <!-- ==========================================
          EVENTS PREVIEW
     ========================================== -->
-    <section class="section section-gray" id="events">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Upcoming Events</h2>
-                <div class="accent-line"></div>
+    <!-- ==========================================
+     EVENTS PREVIEW
+========================================== -->
+<section class="section section-gray" id="events">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Upcoming Events</h2>
+            <div class="accent-line"></div>
+        </div>
+        <div class="card-grid">
+            <div class="card" data-aos="fade-up">
+                <div class="card-image gp-4">
+                    <img src="images/events/oktoberfest.webp" alt="Oktoberfest 2026">
+                    <div class="card-tag">Featured</div>
+                </div>
+                <div class="card-body">
+                    <h3>Oktoberfest 2026</h3>
+                    <p>Our signature annual fundraiser — live music, great food, cold beer, and community spirit. Save the date!</p>
+                    <a href="oktoberfest.html" class="card-link">Details &amp; Tickets <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="card-grid">
-                <div class="card" data-aos="fade-up">
-                    <div class="card-image gp-4">
-                        <div class="card-tag">Featured</div>
-                        <i class="fas fa-beer-mug-empty" style="font-size:4rem;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Oktoberfest 2026</h3>
-                        <p>Our signature annual fundraiser — live music, great food, cold beer, and community spirit. Save the date!</p>
-                        <a href="oktoberfest.html" class="card-link">Details &amp; Tickets <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-image gp-1">
+                    <img src="images/events/weekly-meeting.webp" alt="Weekly Lunch Meeting">
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-image gp-1">
-                        <i class="fas fa-calendar-check" style="font-size:3rem;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Weekly Lunch Meeting</h3>
-                        <p>Join us every Thursday at noon for fellowship, guest speakers, and project updates.</p>
-                        <a href="#join" class="card-link">RSVP <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="card-body">
+                    <h3>Weekly Lunch Meeting</h3>
+                    <p>Join us every Thursday at noon for fellowship, guest speakers, and project updates.</p>
+                    <a href="#join" class="card-link">RSVP <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-image gp-5">
-                        <div class="card-tag">Youth</div>
-                        <i class="fas fa-palette" style="font-size:3rem;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Pageant of the Arts</h3>
-                        <p>Celebrating the artistic talents of local students through our annual showcase.</p>
-                        <a href="pageant-of-arts.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-image gp-5">
+                    <img src="images/events/pageant-of-arts.webp" alt="Pageant of the Arts">
+                    <div class="card-tag">Youth</div>
+                </div>
+                <div class="card-body">
+                    <h3>Pageant of the Arts</h3>
+                    <p>Celebrating the artistic talents of local students through our annual showcase.</p>
+                    <a href="pageant-of-arts.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==========================================
-         YOUTH & STUDENTS
-    ========================================== -->
-    <section class="section section-light" id="youth">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Investing in Youth</h2>
-                <div class="accent-line"></div>
-                <p>Building tomorrow's leaders through scholarships, exchange programs, and hands-on experiences.</p>
+
+<!-- ==========================================
+     YOUTH & STUDENTS
+========================================== -->
+<section class="section section-light" id="youth">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Investing in Youth</h2>
+            <div class="accent-line"></div>
+            <p>Building tomorrow's leaders through scholarships, exchange programs, and hands-on experiences.</p>
+        </div>
+        <div class="card-grid">
+            <div class="card" data-aos="fade-up">
+                <div class="card-image gp-2">
+                    <img src="images/youth-student/scholarships.webp" alt="Scholarships">
+                </div>
+                <div class="card-body">
+                    <h3>Scholarships</h3>
+                    <p>Helping local students pursue higher education through merit and service-based awards.</p>
+                    <a href="scholarships.html" class="card-link">Apply Now <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="card-grid">
-                <div class="card" data-aos="fade-up">
-                    <div class="card-image gp-2">
-                        <i class="fas fa-graduation-cap" style="font-size:3rem;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Scholarships</h3>
-                        <p>Helping local students pursue higher education through merit and service-based awards.</p>
-                        <a href="scholarships.html" class="card-link">Apply Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-image gp-3">
+                    <img src="images/youth-student/ryla.webp" alt="RYLA Leadership Camp">
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-image gp-3">
-                        <i class="fas fa-campground" style="font-size:3rem;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>RYLA</h3>
-                        <p>Rotary Youth Leadership Awards — a transformative leadership camp for high school students.</p>
-                        <a href="ryla.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="card-body">
+                    <h3>RYLA</h3>
+                    <p>Rotary Youth Leadership Awards — a transformative leadership camp for high school students.</p>
+                    <a href="ryla.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-image gp-5">
-                        <i class="fas fa-plane-departure" style="font-size:3rem;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h3>Youth Exchange</h3>
-                        <p>Sending students abroad and hosting international visitors for cross-cultural growth.</p>
-                        <a href="youth-exchange.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-image gp-5">
+                    <img src="images/youth-student/youth-exchange.webp" alt="Youth Exchange">
+                </div>
+                <div class="card-body">
+                    <h3>Youth Exchange</h3>
+                    <p>Sending students abroad and hosting international visitors for cross-cultural growth.</p>
+                    <a href="youth-exchange.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==========================================
-         MEMBER BUSINESS DIRECTORY
-    ========================================== -->
-    <section class="section section-gray" id="directory">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Rotary Means Business</h2>
-                <div class="accent-line"></div>
-                <p>Support our members — trusted local professionals serving Granada Hills.</p>
+
+<!-- ==========================================
+     MEMBER BUSINESS DIRECTORY
+========================================== -->
+<section class="section section-gray" id="directory">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Rotary Means Business</h2>
+            <div class="accent-line"></div>
+            <p>Support our members — trusted local professionals serving Granada Hills.</p>
+        </div>
+
+        <div class="directory-grid">
+            <!-- The Matt Horn Group -->
+            <div class="biz-card" data-aos="fade-up">
+                <div class="biz-card-header">
+                    <div class="biz-logo">
+                        <img src="images/logos/matt-horn-group-logo.webp"
+                             alt="The Matt Horn Group Logo">
+                    </div>
+                    <div class="biz-info">
+                        <h4>The Matt Horn Group</h4>
+                        <span>Matt Horn, Rotarian</span>
+                    </div>
+                </div>
+                <p>Granada Hills real estate experts helping families buy and sell homes across the San Fernando Valley with local insight and personal service.</p>
+                <div class="biz-tags">
+                    <span class="biz-tag">Real Estate</span>
+                    <span class="biz-tag">Northridge</span>
+                </div>
+                <a href="https://www.thematthorngroup.com/" target="_blank" rel="noopener" class="biz-link">
+                    Visit Website <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
-            <div class="directory-grid">
-                <!-- SAMPLE CARDS — Replace with real member businesses -->
-                <div class="biz-card" data-aos="fade-up">
-                    <div class="biz-card-header">
-                        <div class="biz-logo"><i class="fas fa-balance-scale"></i></div>
-                        <div class="biz-info">
-                            <h4>Sample Law Firm</h4>
-                            <span>Jane Doe, Rotarian</span>
-                        </div>
+
+            <!-- California Music Box -->
+            <div class="biz-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="biz-card-header">
+                    <div class="biz-logo">
+                        <img src="images/logos/ca-music-box-logo.webp"
+                             alt="California Music Box Logo">
                     </div>
-                    <p>Family law and estate planning serving the San Fernando Valley for over 20 years.</p>
-                    <div class="biz-tags">
-                        <span class="biz-tag">Legal</span>
-                        <span class="biz-tag">Granada Hills</span>
+                    <div class="biz-info">
+                        <h4>California Music Box</h4>
+                        <span>Rotarian Member</span>
                     </div>
-                    <a href="https://example.com" target="_blank" rel="noopener" class="biz-link">
-                        Visit Website <i class="fas fa-external-link-alt"></i>
-                    </a>
                 </div>
-                <div class="biz-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="biz-card-header">
-                        <div class="biz-logo"><i class="fas fa-home"></i></div>
-                        <div class="biz-info">
-                            <h4>Sample Realty Group</h4>
-                            <span>John Smith, Rotarian</span>
-                        </div>
-                    </div>
-                    <p>Helping families find their dream home in Granada Hills and surrounding communities.</p>
-                    <div class="biz-tags">
-                        <span class="biz-tag">Real Estate</span>
-                        <span class="biz-tag">Northridge</span>
-                    </div>
-                    <a href="https://example.com" target="_blank" rel="noopener" class="biz-link">
-                        Visit Website <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <p>Local music hub offering instruments, lessons, and expert support for musicians and students throughout the Granada Hills area.</p>
+                <div class="biz-tags">
+                    <span class="biz-tag">Music</span>
+                    <span class="biz-tag">Granada Hills</span>
                 </div>
-                <div class="biz-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="biz-card-header">
-                        <div class="biz-logo"><i class="fas fa-tooth"></i></div>
-                        <div class="biz-info">
-                            <h4>Sample Dental Care</h4>
-                            <span>Dr. Maria Garcia, Rotarian</span>
-                        </div>
-                    </div>
-                    <p>Comprehensive family dentistry with a focus on preventive care and patient comfort.</p>
-                    <div class="biz-tags">
-                        <span class="biz-tag">Healthcare</span>
-                        <span class="biz-tag">Granada Hills</span>
-                    </div>
-                    <a href="https://example.com" target="_blank" rel="noopener" class="biz-link">
-                        Visit Website <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
+                <a href="http://www.camusicbox.com/" target="_blank" rel="noopener" class="biz-link">
+                    Visit Website <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
-            <div class="text-center mt-2" data-aos="fade-up">
-                <a href="business-directory.html" class="btn btn-primary" style="margin-top: 2rem;">
-                    View Full Directory <i class="fas fa-arrow-right"></i>
+
+            <!-- Mobile American Notary & Apostilles -->
+            <div class="biz-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="biz-card-header">
+                    <div class="biz-logo">
+                        <img src="images/logos/mobile-american-notary-logo.webp"
+                             alt="Mobile American Notary & Apostilles Logo">
+                    </div>
+                    <div class="biz-info">
+                        <h4>Mobile American Notary & Apostilles</h4>
+                        <span>Rotarian Member</span>
+                    </div>
+                </div>
+                <p>Mobile notary, apostille, Live Scan fingerprinting, and document translation coordination serving Los Angeles, Orange, and Ventura Counties.</p>
+                <div class="biz-tags">
+                    <span class="biz-tag">Notary & Apostille</span>
+                    <span class="biz-tag">Los Angeles</span>
+                </div>
+                <a href="https://www.mobileamericannotary.com" target="_blank" rel="noopener" class="biz-link">
+                    Visit Website <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
         </div>
-    </section>
+
+        <div class="text-center mt-2" data-aos="fade-up">
+            <a href="business-directory.html" class="btn btn-primary" style="margin-top: 2rem">
+                View Full Directory <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
 
     <!-- ==========================================
          JOIN / CTA
@@ -1178,7 +1336,7 @@
     <!-- ==========================================
          DONATE
     ========================================== -->
-    <section class="section section-light" id="donate">
+    <section class="section section-gray" id="donate">
         <div class="container">
             <div class="cta-content" data-aos="fade-up">
                 <h2>Support Our Mission</h2>
@@ -1189,6 +1347,45 @@
             </div>
         </div>
     </section>
+
+<!-- ==========================================
+     SPONSORS
+========================================== -->
+<section class="section section-light" id="sponsors">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Thank You to Our Sponsors</h2>
+            <div class="accent-line"></div>
+            <p>We're grateful for the generous support of these local businesses and organizations.</p>
+        </div>
+        <div class="sponsor-grid" data-aos="fade-up">
+            <a href="https://www.schoolsfirstfcu.org/" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="images/sponsors/schoolsfirst.webp" alt="SchoolsFirst Federal Credit Union">
+            </a>
+            <a href="https://www.republicservices.com/" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="images/sponsors/Republic-Services-Logo.webp" alt="Republic Services">
+            </a>
+            <a href="https://www.menchies.com/location/granada-hills-chatsworth-ave/" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="images/sponsors/menchies.webp" alt="Menchie's Frozen Yogurt Granada Hills">
+            </a>
+            <a href="https://www.chatsworthkiwanis.org/" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="images/sponsors/kiwanis-chatsworth.webp" alt="Kiwanis Club of Chatsworth">
+            </a>
+            <a href="https://www.whrotary.org/" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="images/sponsors/WH_Rotary-Logo.webp" alt="Woodland Hills Rotary Club">
+            </a>
+            <a href="https://www.remax.com/real-estate-agents/keith-myers-northridge-ca/100019260" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="images/sponsors/remax-one-keith-meyers.webp" alt="Keith Myers RE/MAX One Real Estate Northridge">
+            </a>
+        </div>
+        <div class="text-center mt-2" data-aos="fade-up">
+            <a href="become-a-sponsor.html" class="btn btn-primary" style="background: var(--rotary-blue); color: var(--white); margin-top: 1rem;">
+                <i class="fas fa-star"></i> Become a Sponsor
+            </a>
+        </div>
+    </div>
+</section>
+
 
     <!-- ==========================================
          FOOTER
@@ -1288,12 +1485,10 @@
                         function update(currentTime) {
                             const elapsed = currentTime - start;
                             const progress = Math.min(elapsed / duration, 1);
-
-                            // Easing function
                             const eased = 1 - Math.pow(1 - progress, 3);
                             const current = Math.floor(eased * target);
 
-                            counter.textContent = current.toLocaleString() + (target >= 10000 ? '+' : target >= 100 ? '+' : '+');
+                            counter.textContent = current.toLocaleString() + '+';
 
                             if (progress < 1) {
                                 requestAnimationFrame(update);
@@ -1318,6 +1513,24 @@
                 }
             });
         });
+
+        // Random hero image on each page load
+        (function() {
+            const heroImages = [
+                'images/hero/hero1.webp',
+                'images/hero/hero2.webp',
+                'images/hero/hero3.webp',
+                'images/hero/hero4.webp',
+                'images/hero/hero5.webp',
+                'images/hero/hero6.webp'
+            ];
+            const randomIndex = Math.floor(Math.random() * heroImages.length);
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
+            }
+        })();
     </script>
 </body>
 </html>
+
