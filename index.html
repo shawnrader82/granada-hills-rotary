@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Granada Hills Rotary Club | Community Service Since 1948</title>
+    <meta name="description" content="Join Granada Hills Rotary — the largest Rotary club in the north San Fernando Valley. Weekly meetings, community projects, youth scholarships, and more.">
+    <meta name="keywords" content="Granada Hills Rotary, Rotary Club, community service, San Fernando Valley, volunteer, scholarships, Oktoberfest">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rotary Club of Granada Hills, California">
+    <meta property="og:description" content="Serving Granada Hills since 1948. The largest Rotary club in the north San Fernando Valley.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.granadahillsrotary.org">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rotary Club of Granada Hills",
+        "url": "https://www.granadahillsrotary.org",
+        "description": "The largest Rotary club in the north San Fernando Valley, serving the community since 1948.",
+        "foundingDate": "1948",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Granada Hills",
+            "addressRegion": "CA",
+            "postalCode": "91344",
+            "addressCountry": "US"
+        },
+        "meetingSchedule": "Every Thursday at 12:00 PM",
+        "sameAs": [
+            "https://www.facebook.com/120432081311421/"
+        ]
+    }
+    </script>
+
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+        ============================================ */
+        :root {
+            --rotary-blue: #003366;
+            --rotary-gold: #F7A81B;
+            --rotary-light-blue: #0050A0;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gray-100: #f0f2f5;
+            --gray-200: #e2e6ea;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ============================================
+           NAVIGATION
+        ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 51, 102, 0.97);
+            padding: 0.6rem 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .nav-logo img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .nav-links .btn-join {
+            background: var(--rotary-gold);
+            color: var(--rotary-blue);
+            font-weight: 700;
+            padding: 0.5rem 1.3rem;
+            margin-left: 0.5rem;
+        }
+
+        .nav-links .btn-join:hover {
+            background: #e8990f;
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* ============================================
+           HERO SECTION
+        ============================================ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            /* Placeholder gradient - replace with your actual hero photo */
+            background: linear-gradient(135deg, #003366 0%, #0050A0 40%, #1a6bc4 70%, #003366 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.3) 0%,
+                rgba(0,0,0,0.1) 40%,
+                rgba(0,51,102,0.6) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(247, 168, 27, 0.2);
+            border: 1px solid rgba(247, 168, 27, 0.4);
+            color: var(--rotary-gold);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--rotary-gold);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--rotary-gold);
+            color: var(--rotary-blue);
+        }
+
+        .btn-primary:hover {
+            background: #e8990f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(247, 168, 27, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: var(--white);
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ============================================
+           MEETING STRIP
+        ============================================ */
+        .meeting-strip {
+            background: var(--rotary-blue);
+            color: var(--white);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .meeting-strip i {
+            color: var(--rotary-gold);
+            margin-right: 8px;
+        }
+
+        .meeting-strip a {
+            color: var(--rotary-gold);
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .meeting-strip a:hover {
+            border-bottom-color: var(--rotary-gold);
+        }
+
+        /* ============================================
+           SECTION STYLES
+        ============================================ */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-light {
+            background: var(--white);
+        }
+
+        .section-gray {
+            background: var(--gray-100);
+        }
+
+        .section-dark {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .section-blue {
+            background: linear-gradient(135deg, var(--rotary-blue), var(--rotary-light-blue));
+            color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            color: inherit;
+        }
+
+        .section-header .accent-line {
+            width: 60px;
+            height: 4px;
+            background: var(--rotary-gold);
+            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           IMPACT COUNTERS
+        ============================================ */
+        .counters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--rotary-gold);
+            display: block;
+        }
+
+        .counter-label {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-top: 0.3rem;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           PROJECT CARDS
+        ============================================ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--rotary-blue), var(--rotary-light-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image i {
+            font-size: 3rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--rotary-gold);
+            color: var(--rotary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--rotary-blue);
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1rem;
+            color: var(--rotary-light-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .card-link:hover {
+            gap: 10px;
+            color: var(--rotary-gold);
+        }
+
+        /* ============================================
+           PHOTO GALLERY STRIP
+        ============================================ */
+        .gallery-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 4px;
+            padding: 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,51,102,0.0);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(0,51,102,0.3);
+        }
+
+        /* Placeholder gallery items */
+        .gallery-placeholder {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .gp-1 { background: linear-gradient(135deg, #003366, #0050A0); }
+        .gp-2 { background: linear-gradient(135deg, #0050A0, #2980b9); }
+        .gp-3 { background: linear-gradient(135deg, #1a6bc4, #003366); }
+        .gp-4 { background: linear-gradient(135deg, #F7A81B, #e8990f); }
+        .gp-5 { background: linear-gradient(135deg, #003366, #1a6bc4); }
+        .gp-6 { background: linear-gradient(135deg, #2980b9, #003366); }
+
+        /* ============================================
+           BUSINESS DIRECTORY
+        ============================================ */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .biz-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+
+        .biz-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-left-color: var(--rotary-gold);
+        }
+
+        .biz-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .biz-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--rotary-blue);
+            flex-shrink: 0;
+        }
+
+        .biz-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .biz-info span {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .biz-card p {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .biz-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .biz-tag {
+            background: var(--gray-100);
+            color: var(--rotary-blue);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .biz-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--rotary-light-blue);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .biz-link:hover {
+            color: var(--rotary-gold);
+        }
+
+        /* ============================================
+           CTA SECTION
+        ============================================ */
+        .cta-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            margin-bottom: 2rem;
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.6);
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--rotary-gold);
+        }
+
+        .footer-col .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-col .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .footer-col .social-links a:hover {
+            background: var(--rotary-gold);
+            color: var(--rotary-blue);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           MOBILE RESPONSIVE
+        ============================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: var(--rotary-blue);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 0.5rem;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.05rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .meeting-strip {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            .gallery-strip {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* ============================================
+           UTILITY
+        ============================================ */
+        .text-gold { color: var(--rotary-gold); }
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 2rem; }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         NAVIGATION
+    ========================================== -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <!-- Replace with your Rotary wheel logo -->
+            <i class="fas fa-cog fa-spin" style="font-size:1.6rem; color: var(--rotary-gold);"></i>
+            Granada Hills Rotary
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#impact">Our Impact</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#youth">Youth</a></li>
+            <li><a href="#directory">Business Directory</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#donate">Donate</a></li>
+            <li><a href="#join" class="btn-join">Join Us</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         HERO
+    ========================================== -->
+    <section class="hero">
+        <div class="hero-bg">
+            <!-- Replace background gradient with: style="background-image: url('images/hero.jpg');" -->
+        </div>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <div class="hero-badge">Est. 1948 &bull; Granada Hills, California</div>
+            <h1>Service Above <span>Self</span></h1>
+            <p>The largest Rotary club in the north San Fernando Valley — connecting leaders, exchanging ideas, and taking action in our community.</p>
+            <div class="hero-buttons">
+                <a href="#join" class="btn btn-primary">
+                    <i class="fas fa-handshake"></i> Get Involved
+                </a>
+                <a href="#impact" class="btn btn-outline">
+                    <i class="fas fa-play-circle"></i> See Our Work
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         MEETING INFO STRIP
+    ========================================== -->
+    <div class="meeting-strip">
+        <span><i class="fas fa-calendar-alt"></i> Every Thursday at 12:00 PM</span>
+        <span><i class="fas fa-map-marker-alt"></i> Porter Valley Country Club</span>
+        <span><i class="fas fa-utensils"></i> Lunch Meeting &mdash; <a href="#join">RSVP Here</a></span>
+    </div>
+
+    <!-- ==========================================
+         IMPACT COUNTERS
+    ========================================== -->
+    <section class="section section-blue" id="impact">
+        <div class="container">
+            <div class="counters">
+                <div class="counter-item" data-aos="fade-up" data-aos-delay="0">
+                    <span class="counter-number" data-target="75">0</span>
+                    <span class="counter-label">Years Serving Granada Hills</span>
+                </div>
+                <div class="counter-item" data-aos="fade-up" data-aos-delay="100">
+                    <span class="counter-number" data-target="500">0</span>
+                    <span class="counter-label">Scholarships Awarded</span>
+                </div>
+                <div class="counter-item" data-aos="fade-up" data-aos-delay="200">
+                    <span class="counter-number" data-target="10000">0</span>
+                    <span class="counter-label">Volunteer Hours Annually</span>
+                </div>
+                <div class="counter-item" data-aos="fade-up" data-aos-delay="300">
+                    <span class="counter-number" data-target="50">0</span>
+                    <span class="counter-label">Active Members</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PROJECTS
+    ========================================== -->
+    <section class="section section-light" id="projects">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Making a Difference</h2>
+                <div class="accent-line"></div>
+                <p>From local parks to international initiatives, here's how we serve.</p>
+            </div>
+            <div class="card-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="card-image gp-1">
+                        <div class="card-tag">Community</div>
+                        <!-- Replace with: <img src="images/veterans-park.jpg" alt="Veteran's Park project"> -->
+                        <i class="fas fa-flag-usa"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Veteran&rsquo;s Park</h3>
+                        <p>Honoring those who served through our ongoing park beautification and memorial project.</p>
+                        <a href="veterans-park.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image gp-2">
+                        <div class="card-tag">Environment</div>
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Lunch Out of Landfills</h3>
+                        <p>Reducing school lunch waste across Granada Hills — one cafeteria at a time.</p>
+                        <a href="lunch-out-of-landfills.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image gp-3">
+                        <div class="card-tag">International</div>
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Ending Polio</h3>
+                        <p>Partnering with Rotary International to eradicate polio worldwide.</p>
+                        <a href="ending-polio.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PHOTO GALLERY STRIP
+    ========================================== -->
+    <section class="gallery-strip" id="gallery" data-aos="fade-in">
+        <!-- Replace placeholders with your actual photos -->
+        <div class="gallery-item"><div class="gallery-placeholder gp-1"><i class="fas fa-camera"></i></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder gp-4"><i class="fas fa-beer-mug-empty"></i></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder gp-2"><i class="fas fa-users"></i></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder gp-5"><i class="fas fa-graduation-cap"></i></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder gp-3"><i class="fas fa-hand-holding-heart"></i></div></div>
+        <div class="gallery-item"><div class="gallery-placeholder gp-6"><i class="fas fa-tree"></i></div></div>
+    </section>
+
+    <!-- ==========================================
+         EVENTS PREVIEW
+    ========================================== -->
+    <section class="section section-gray" id="events">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Upcoming Events</h2>
+                <div class="accent-line"></div>
+            </div>
+            <div class="card-grid">
+                <div class="card" data-aos="fade-up">
+                    <div class="card-image gp-4">
+                        <div class="card-tag">Featured</div>
+                        <i class="fas fa-beer-mug-empty" style="font-size:4rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Oktoberfest 2026</h3>
+                        <p>Our signature annual fundraiser — live music, great food, cold beer, and community spirit. Save the date!</p>
+                        <a href="oktoberfest.html" class="card-link">Details &amp; Tickets <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image gp-1">
+                        <i class="fas fa-calendar-check" style="font-size:3rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Weekly Lunch Meeting</h3>
+                        <p>Join us every Thursday at noon for fellowship, guest speakers, and project updates.</p>
+                        <a href="#join" class="card-link">RSVP <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image gp-5">
+                        <div class="card-tag">Youth</div>
+                        <i class="fas fa-palette" style="font-size:3rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Pageant of the Arts</h3>
+                        <p>Celebrating the artistic talents of local students through our annual showcase.</p>
+                        <a href="pageant-of-arts.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         YOUTH & STUDENTS
+    ========================================== -->
+    <section class="section section-light" id="youth">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Investing in Youth</h2>
+                <div class="accent-line"></div>
+                <p>Building tomorrow's leaders through scholarships, exchange programs, and hands-on experiences.</p>
+            </div>
+            <div class="card-grid">
+                <div class="card" data-aos="fade-up">
+                    <div class="card-image gp-2">
+                        <i class="fas fa-graduation-cap" style="font-size:3rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Scholarships</h3>
+                        <p>Helping local students pursue higher education through merit and service-based awards.</p>
+                        <a href="scholarships.html" class="card-link">Apply Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image gp-3">
+                        <i class="fas fa-campground" style="font-size:3rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>RYLA</h3>
+                        <p>Rotary Youth Leadership Awards — a transformative leadership camp for high school students.</p>
+                        <a href="ryla.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image gp-5">
+                        <i class="fas fa-plane-departure" style="font-size:3rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Youth Exchange</h3>
+                        <p>Sending students abroad and hosting international visitors for cross-cultural growth.</p>
+                        <a href="youth-exchange.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         MEMBER BUSINESS DIRECTORY
+    ========================================== -->
+    <section class="section section-gray" id="directory">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Rotary Means Business</h2>
+                <div class="accent-line"></div>
+                <p>Support our members — trusted local professionals serving Granada Hills.</p>
+            </div>
+            <div class="directory-grid">
+                <!-- SAMPLE CARDS — Replace with real member businesses -->
+                <div class="biz-card" data-aos="fade-up">
+                    <div class="biz-card-header">
+                        <div class="biz-logo"><i class="fas fa-balance-scale"></i></div>
+                        <div class="biz-info">
+                            <h4>Sample Law Firm</h4>
+                            <span>Jane Doe, Rotarian</span>
+                        </div>
+                    </div>
+                    <p>Family law and estate planning serving the San Fernando Valley for over 20 years.</p>
+                    <div class="biz-tags">
+                        <span class="biz-tag">Legal</span>
+                        <span class="biz-tag">Granada Hills</span>
+                    </div>
+                    <a href="https://example.com" target="_blank" rel="noopener" class="biz-link">
+                        Visit Website <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="biz-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="biz-card-header">
+                        <div class="biz-logo"><i class="fas fa-home"></i></div>
+                        <div class="biz-info">
+                            <h4>Sample Realty Group</h4>
+                            <span>John Smith, Rotarian</span>
+                        </div>
+                    </div>
+                    <p>Helping families find their dream home in Granada Hills and surrounding communities.</p>
+                    <div class="biz-tags">
+                        <span class="biz-tag">Real Estate</span>
+                        <span class="biz-tag">Northridge</span>
+                    </div>
+                    <a href="https://example.com" target="_blank" rel="noopener" class="biz-link">
+                        Visit Website <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="biz-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="biz-card-header">
+                        <div class="biz-logo"><i class="fas fa-tooth"></i></div>
+                        <div class="biz-info">
+                            <h4>Sample Dental Care</h4>
+                            <span>Dr. Maria Garcia, Rotarian</span>
+                        </div>
+                    </div>
+                    <p>Comprehensive family dentistry with a focus on preventive care and patient comfort.</p>
+                    <div class="biz-tags">
+                        <span class="biz-tag">Healthcare</span>
+                        <span class="biz-tag">Granada Hills</span>
+                    </div>
+                    <a href="https://example.com" target="_blank" rel="noopener" class="biz-link">
+                        Visit Website <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-2" data-aos="fade-up">
+                <a href="business-directory.html" class="btn btn-primary" style="margin-top: 2rem;">
+                    View Full Directory <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         JOIN / CTA
+    ========================================== -->
+    <section class="section section-blue" id="join">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Whether you want to volunteer, join as a member, or simply attend a Thursday lunch — we'd love to meet you.</p>
+                <div class="hero-buttons">
+                    <a href="join.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Become a Member
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         DONATE
+    ========================================== -->
+    <section class="section section-light" id="donate">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Support Our Mission</h2>
+                <p>Your tax-deductible donation goes directly to local projects, scholarships, and international Rotary initiatives.</p>
+                <a href="donate.html" class="btn btn-primary" style="background: var(--rotary-blue); color: var(--white);">
+                    <i class="fas fa-heart"></i> Donate Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Granada Hills Rotary</h4>
+                <p>Serving our community since 1948.<br>
+                The largest Rotary club in the<br>north San Fernando Valley.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/120432081311421/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:rotaryofgranadahills@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#impact" style="display:block;">Our Impact</a>
+                <a href="#events" style="display:block;">Events</a>
+                <a href="#youth" style="display:block;">Youth Programs</a>
+                <a href="#directory" style="display:block;">Business Directory</a>
+                <a href="#donate" style="display:block;">Donate</a>
+                <a href="https://www.granadahillsrotary.org" target="_blank" style="display:block;">Member Portal (ClubRunner)</a>
+            </div>
+            <div class="footer-col">
+                <h4>Meet With Us</h4>
+                <p><i class="fas fa-clock text-gold"></i> Every Thursday, 12:00 PM</p>
+                <p><i class="fas fa-map-marker-alt text-gold"></i> Porter Valley Country Club<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19216 Singing Hills Dr<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Northridge, CA 91326</p>
+                <div class="footer-map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3298.5!2d-118.56!3d34.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPorter+Valley+Country+Club!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="150" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        title="Porter Valley Country Club location">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rotary Club of Granada Hills, California &bull; District 5280 &bull; Rotary International<br>
+            <a href="privacy-policy.html">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         SCRIPTS
+    ========================================== -->
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: true,
+            offset: 80
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile nav toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Animated counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter-number');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        const start = performance.now();
+
+                        function update(currentTime) {
+                            const elapsed = currentTime - start;
+                            const progress = Math.min(elapsed / duration, 1);
+
+                            // Easing function
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.floor(eased * target);
+
+                            counter.textContent = current.toLocaleString() + (target >= 10000 ? '+' : target >= 100 ? '+' : '+');
+
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            }
+                        }
+                        requestAnimationFrame(update);
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.counters').forEach(el => counterObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
