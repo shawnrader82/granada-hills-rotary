@@ -909,7 +909,7 @@ footer {
 /* ============================================
    RESPONSIVE
 ============================================ */
-@media (max-width: 1300px) {
+@media (max-width: 1280px) {
     .nav-links {
         display: none;
         position: fixed;
