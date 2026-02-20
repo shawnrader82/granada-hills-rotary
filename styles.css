@@ -909,7 +909,7 @@ footer {
 /* ============================================
    RESPONSIVE
 ============================================ */
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
     .nav-links {
         display: none;
         position: fixed;
@@ -924,16 +924,16 @@ footer {
         box-shadow: var(--shadow-lg);
     }
 
-    .project-layout {
-        grid-template-columns: 1fr;
-    }
-
     .nav-links.active {
         display: flex;
     }
 
     .nav-toggle {
         display: flex;
+    }
+
+    .project-layout {
+        grid-template-columns: 1fr;
     }
 
     .meeting-strip {
@@ -953,32 +953,34 @@ footer {
     .section {
         padding: 4rem 1.5rem;
     }
-/* Slightly tinted blue section for detail pages */
-.section-blue-soft {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 51, 102, 0.04),
-        rgba(0, 80, 160, 0.06)
-    );
+
+    /* Slightly tinted blue section for detail pages */
+    .section-blue-soft {
+        background: linear-gradient(
+            135deg,
+            rgba(0, 51, 102, 0.04),
+            rgba(0, 80, 160, 0.06)
+        );
     }
     
     /* Soft alternates for interior pages */
-.section-soft-gold {
-    background: linear-gradient(
-        135deg,
-        rgba(247, 168, 27, 0.04),
-        rgba(247, 168, 27, 0.08)
-    );
+    .section-soft-gold {
+        background: linear-gradient(
+            135deg,
+            rgba(247, 168, 27, 0.04),
+            rgba(247, 168, 27, 0.08)
+        );
     }
 
-.section-soft-gray {
-    background: linear-gradient(
-        135deg,
-        rgba(240, 242, 245, 1),
-        rgba(226, 230, 234, 1)
-    );
+    .section-soft-gray {
+        background: linear-gradient(
+            135deg,
+            rgba(240, 242, 245, 1),
+            rgba(226, 230, 234, 1)
+        );
     }
 }
+
 
 /* ============================================
    UTILITIES
