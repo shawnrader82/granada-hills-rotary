@@ -108,15 +108,15 @@ img {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 0.25rem;              /* tightened spacing */
+    gap: 0.25rem;
     align-items: center;
 }
 
 .nav-links a {
     color: var(--white);
-    padding: 0.35rem 0.6rem;   /* smaller paddings */
+    padding: 0.35rem 0.6rem;
     border-radius: 8px;
-    font-size: 0.8rem;         /* slightly smaller text */
+    font-size: 0.8rem;
     font-weight: 500;
     transition: var(--transition);
     letter-spacing: 0.02em;
@@ -131,7 +131,7 @@ img {
     background: var(--rotary-gold);
     color: var(--rotary-blue);
     font-weight: 700;
-    padding: 0.4rem 1.0rem;    /* slightly smaller button */
+    padding: 0.4rem 1.0rem;
     margin-left: 0.35rem;
 }
 
@@ -509,9 +509,10 @@ img {
 /* ============================================
    PROJECT DETAIL LAYOUT
 ============================================ */
+
 .project-layout {
     display: grid;
-    grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr); /* slightly wider image column */
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
     gap: 2.5rem;
     align-items: flex-start;
 }
@@ -535,7 +536,7 @@ img {
     border-radius: var(--radius);
     box-shadow: var(--shadow-md);
     overflow: hidden;
-    max-height: 320px; /* let the featured photo feel larger */
+    max-height: 320px;
 }
 
 .project-photo-card img {
@@ -582,6 +583,163 @@ img {
     margin-bottom: 0.75rem;
     font-weight: 600;
 }
+
+/* ============================================
+   OKTOBERFEST BEERFEST SECTION
+============================================ */
+
+.section-beerfest {
+  position: relative;
+  color: #fff;
+  background: linear-gradient(135deg, #050814, #0a1730);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.section-beerfest::before {
+  content: none;
+}
+
+.section-beerfest .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section-beerfest .section-header p {
+  opacity: 0.9;
+}
+
+/* Layout: cards + aside */
+.beerfest-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.beerfest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Dark glowing cards */
+.okt-card {
+  background: #0b1220;
+  border-radius: var(--radius);
+  padding: 1.8rem 1.9rem;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+  border: 1px solid rgba(247,168,27,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.okt-card h3,
+.section-beerfest .project-section-title {
+  color: var(--rotary-gold);
+  margin-bottom: 0.6rem;
+}
+
+.section-beerfest .project-section-subtitle {
+  color: var(--rotary-light-blue);
+}
+
+/* make inner blocks transparent so text reads on dark card */
+.section-beerfest .project-text-block {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.section-beerfest .project-text-block p,
+.section-beerfest .project-text-block li {
+  color: rgba(255,255,255,0.92);
+}
+
+/* subtle beer-bubble accent */
+.okt-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247,168,27,0.6), transparent 60%);
+  opacity: 0.3;
+}
+
+/* Aside tweaks */
+.beerfest-aside .beerfest-photo {
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+}
+
+.beerfest-aside .beerfest-snapshot {
+  background: #050814;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+  margin-top: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .beerfest-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .beerfest-grid {
+    gap: 1.25rem;
+  }
+}
+
+/* ============================================
+   OKTOBERFEST SPONSOR GRID BAND
+============================================ */
+
+.section-sponsors-bg {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+/* crowd photo behind sponsors */
+.section-sponsors-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/images/events/oktoberfest/oktoberfest-crowd-2.webp')
+              center/cover no-repeat;
+  opacity: 0.60;
+  filter: grayscale(10%);
+  pointer-events: none;
+}
+
+.section-sponsors-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.96) 0%,
+      rgba(255,255,255,0.65) 15%,
+      rgba(255,255,255,0.25) 40%,
+      rgba(255,255,255,0.25) 60%,
+      rgba(255,255,255,0.75) 80%,  /* slightly stronger sooner */
+      rgba(255,255,255,1.00) 100%  /* full white at very bottom */
+  );
+  pointer-events: none;
+}
+
+
+/* content above overlays */
+.section-sponsors-bg .container {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ============================================
    YOUTH PROGRAM THEME
@@ -703,7 +861,7 @@ img {
 
 /* Fixed-height top square for logos (home cards) */
 .biz-card-logo-wrap {
-  height: 180px; /* keep fixed height so cards line up */
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -789,7 +947,7 @@ img {
 /* One row per business */
 .directory-list-item {
   display: grid;
-  grid-template-columns: auto 1fr auto; /* logo | main | actions */
+  grid-template-columns: auto 1fr auto;
   gap: 1rem;
   align-items: center;
   background: var(--white);
@@ -941,7 +1099,7 @@ img {
 }
 
 .leader-photo img {
-  width: 120px;              /* tweak to 140px if you prefer larger */
+  width: 120px;
   height: 120px;
   object-fit: cover;
   object-position: center;
@@ -1061,47 +1219,39 @@ img {
     margin-bottom: 2rem;
 }
 
+/* Sponsors ribbon – looser layout */
 .sponsor-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 2rem;
-    align-items: center;
-    justify-items: center;
-    max-width: 900px;
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem 3rem;          /* more air between logos */
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
+/* No more rigid cards */
 .sponsor-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    border-radius: var(--radius);
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    width: 100%;
-    aspect-ratio: 16/9;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: auto;
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
 }
 
-.sponsor-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--rotary-gold);
-}
-
+/* Logos a little bigger, free-floating */
 .sponsor-item img {
-    max-height: 80px;
-    max-width: 100%;
-    width: auto;
-    object-fit: contain;
-    transition: var(--transition);
+  max-height: 90px;
+  max-width: 220px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.sponsor-item:hover img {
-    transform: scale(1.05);
-}
 
 /* ============================================
    FOOTER
@@ -1187,7 +1337,7 @@ footer {
 @media (max-width: 1150px) {
     /* Mobile nav panel (hidden until .active) */
     .nav-links {
-        display: none;              /* MOBILE: hide by default */
+        display: none;
         position: fixed;
         top: 0;
         right: 0;
@@ -1201,11 +1351,11 @@ footer {
     }
 
     .nav-links.active {
-        display: flex;              /* JS adds .active to show */
+        display: flex;
     }
 
     .nav-toggle {
-        display: flex;              /* MOBILE: show hamburger */
+        display: flex;
     }
 
     .project-layout {
@@ -1270,10 +1420,9 @@ footer {
 ============================================ */
 
 .join-page .section.section-light {
-    padding-top: 3rem; /* slightly less than the default 6rem */
+    padding-top: 3rem;
 }
 
-/* Optional: balance the two cards vertically a bit */
 .join-page #join-form .card-body {
     padding-bottom: 1.75rem;
 }
