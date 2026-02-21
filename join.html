@@ -31,20 +31,15 @@
   <!-- STYLES -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="join-page">
+
   <!-- Anchor for Home link and logo -->
   <div id="top"></div>
 
-<!-- ==========================================
-         HEADER
-    ========================================== -->
-    <!-- Anchor for "Home" link and logo -->
-    <div id="top"></div>
-
-<header id="site-header"></header>
-
-
-
+  <!-- ==========================================
+       HEADER
+  ========================================== -->
+  <header id="site-header"></header>
 
   <!-- ==========================================
        JOIN HERO
@@ -81,7 +76,7 @@
     <div class="container">
       <div
         class="card-grid"
-        style="grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr); align-items: flex-start;"
+        style="grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr); align-items: flex-start; gap: 2rem;"
       >
         <!-- LEFT: Why / What to expect -->
         <div class="card" data-aos="fade-right">
@@ -107,6 +102,7 @@
               <li>Bring your ideas, skills, and enthusiasm to help our community thrive.</li>
             </ul>
 
+            <!-- Visit info block -->
             <div class="project-text-block" style="margin-top: 1.5rem;">
               <h3 style="margin-top: 0;">Visit a Thursday Lunch</h3>
               <p>
@@ -114,229 +110,210 @@
               </p>
               <p>
                 <strong>When:</strong> Thursdays at 12:00 PM<br />
-                <strong>Where:</strong> Porter Valley Country Club, Northridge
+                <strong>Where:</strong>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Porter+Valley+Country+Club+Northridge+CA"
+                  target="_blank"
+                  rel="noopener"
+                  style="color: var(--rotary-light-blue); font-weight: 600;"
+                >
+                  Porter Valley Country Club, Northridge
+                </a>
               </p>
-              <a
-                href="mailto:rotaryofgranadahills@gmail.com?subject=I%27d%20like%20to%20visit%20a%20meeting&body=Hello%2C%0D%0A%0D%0AI%27m%20interested%20in%20visiting%20a%20Granada%20Hills%20Rotary%20meeting.%20Here%27s%20my%20contact%20information%3A%0D%0A%0D%0AName%3A%0D%0AEmail%3A%0D%0APhone%20(optional)%3A%0D%0A"
-                class="btn btn-primary"
-              >
-                <i class="fas fa-envelope"></i>
-                Email to Visit a Meeting
-              </a>
             </div>
           </div>
         </div>
 
-        <!-- RIGHT: Interest form / Google Form embed -->
+        <!-- RIGHT: Membership & Interest Form as card -->
         <div class="card" id="join-form" data-aos="fade-left">
           <div class="card-body">
-            <h3 style="color: var(--rotary-blue); margin-bottom: 0.75rem;">
-              Tell Us You’re Interested
-            </h3>
-            <p>
-              Fill out this brief form and a member of our Membership Team will follow up with next steps and an invitation to visit.
-            </p>
+            <div style="max-width: 720px; margin: 0 auto;">
+              <h3 style="color: var(--rotary-blue); margin-bottom: 0.5rem;">
+                Membership & Interest Form
+              </h3>
+              <div class="accent-line" style="margin-bottom: 0.75rem;"></div>
+              <p>
+                Share a bit about yourself and what you’re looking for. A member of our Membership Team will follow up with next steps and an invitation to visit a Thursday lunch.
+              </p>
 
-            <div
-              style="
-                border-radius: var(--radius);
-                overflow: hidden;
-                border: 1px solid var(--gray-200);
-                background: var(--gray-100);
-                margin-top: 1rem;
-              "
-            >
-              <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdnz36t5qmg37hLQ70DJHVJaUXdMpU8PfPrK2jRzQpbl7K61A/viewform?embedded=true"
-                width="100%"
-                height="820"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0"
-                style="border: 0; display: block;"
-                loading="lazy"
+              <div
+                style="
+                  border-radius: var(--radius);
+                  overflow: hidden;
+                  border: 1px solid var(--gray-200);
+                  background: var(--gray-100);
+                  margin-top: 1rem;
+                "
               >
-                Loading…
-              </iframe>
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSdAPJMplueaNwderFnYy7AKy3n7uL22RrxCZYOmFNSBIECM2g/viewform?embedded=true"
+                  width="100%"
+                  height="1000"
+                  frameborder="0"
+                  marginheight="0"
+                  marginwidth="0"
+                  style="border: 0; display: block;"
+                  loading="lazy"
+                >
+                  Loading…
+                </iframe>
+              </div>
+
+              <p style="font-size: 0.85rem; color: var(--gray-600); margin-top: 0.75rem;">
+                Your information is used only for Rotary Club of Granada Hills membership and event follow‑up. It will not be sold or shared.
+              </p>
             </div>
-
-            <p style="font-size: 0.85rem; color: var(--gray-600); margin-top: 0.75rem;">
-              Your information is used only for Rotary Club of Granada Hills membership and event follow‑up. It will not be sold or shared.
-            </p>
-
-            <p style="font-size: 0.9rem; margin-top: 1rem;">
-              Prefer email? Contact our Membership Team at
-              <a
-                href="mailto:rotaryofgranadahills@gmail.com"
-                style="color: var(--rotary-light-blue); font-weight: 600;"
-              >
-                rotaryofgranadahills@gmail.com
-              </a>.
-            </p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-    <!-- ==========================================
-         FOOTER
-    ========================================== -->
-<footer id="footer"></footer>
+  <!-- ==========================================
+       FOOTER
+  ========================================== -->
+  <footer id="footer"></footer>
 
-<script>
-  // Load shared footer into this page
-  fetch('footer.html')
-    .then(r => r.text())
-    .then(html => {
-      const el = document.getElementById('footer');
-      if (el) el.innerHTML = html;
+  <script>
+    // Load shared footer into this page
+    fetch('footer.html')
+      .then(r => r.text())
+      .then(html => {
+        const el = document.getElementById('footer');
+        if (el) el.innerHTML = html;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+
+  <!-- ==========================================
+       SCRIPTS
+  ========================================== -->
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Site Scripts -->
+  <script>
+    // Initialize AOS
+    AOS.init({
+      once: true,
+      offset: 80
+    });
+
+    // Animated counters (safe even if none on this page)
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counters = entry.target.querySelectorAll('.counter-number');
+          counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const duration = 2000;
+            const start = performance.now();
+
+            function update(currentTime) {
+              const elapsed = currentTime - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.floor(eased * target);
+
+              counter.textContent = current.toLocaleString() + '+';
+
+              if (progress < 1) {
+                requestAnimationFrame(update);
+              }
+            }
+
+            requestAnimationFrame(update);
+          });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.counters').forEach(el => counterObserver.observe(el));
+
+    // Smooth scroll for internal anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Random hero image on each page load
+    (function() {
+      const heroImages = [
+        'images/hero/hero1.webp',
+        'images/hero/hero2.webp',
+        'images/hero/hero3.webp',
+        'images/hero/hero4.webp',
+        'images/hero/hero5.webp',
+        'images/hero/hero6.webp'
+      ];
+      const randomIndex = Math.floor(Math.random() * heroImages.length);
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
+      }
+    })();
+  </script>
+
+  <!-- Shared Header & Footer Loader + Nav Behavior -->
+  <script>
+    // Load shared header and footer, THEN wire nav
+    Promise.all([
+      fetch('header.html').then(r => r.text()),
+      fetch('footer.html').then(r => r.text())
+    ])
+    .then(([headerHtml, footerHtml]) => {
+      // Inject header
+      const headerEl = document.getElementById('site-header');
+      if (headerEl) headerEl.innerHTML = headerHtml;
+
+      // Inject footer
+      const footerEl = document.getElementById('footer');
+      if (footerEl) footerEl.innerHTML = footerHtml;
+
+      // Now that header exists, wire nav behavior
+      const navbar   = document.getElementById('navbar');
+      const navLinks = document.getElementById('navLinks');
+
+      // Navbar scroll effect (80px -> blue)
+      if (navbar) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 80) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      }
+
+      // Mobile nav toggle
+      window.toggleNav = function () {
+        if (navLinks) {
+          navLinks.classList.toggle('active');
+        }
+      };
+
+      // Close mobile nav on link click
+      if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+          });
+        });
+      }
     })
-    .catch(err => console.error('Error loading footer:', err));
-</script>
-
-        <!-- ==========================================
-         SCRIPTS
-    ========================================== -->
-
-    <!-- AOS Animation Library -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-    <!-- Site Scripts -->
-    <script>
-        // ------------------------------------------
-        // Initialize AOS
-        // ------------------------------------------
-        AOS.init({
-            once: true,
-            offset: 80
-        });
-
-        // ------------------------------------------
-        // Animated counters
-        // ------------------------------------------
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('.counter-number');
-                    counters.forEach(counter => {
-                        const target = +counter.getAttribute('data-target');
-                        const duration = 2000;
-                        const start = performance.now();
-
-                        function update(currentTime) {
-                            const elapsed = currentTime - start;
-                            const progress = Math.min(elapsed / duration, 1);
-                            const eased = 1 - Math.pow(1 - progress, 3);
-                            const current = Math.floor(eased * target);
-
-                            counter.textContent = current.toLocaleString() + '+';
-
-                            if (progress < 1) {
-                                requestAnimationFrame(update);
-                            }
-                        }
-
-                        requestAnimationFrame(update);
-                    });
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.counters').forEach(el => counterObserver.observe(el));
-
-        // ------------------------------------------
-        // Smooth scroll for internal anchor links
-        // ------------------------------------------
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (!href || href === '#') return;
-
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // ------------------------------------------
-        // Random hero image on each page load
-        // ------------------------------------------
-        (function() {
-            const heroImages = [
-                'images/hero/hero1.webp',
-                'images/hero/hero2.webp',
-                'images/hero/hero3.webp',
-                'images/hero/hero4.webp',
-                'images/hero/hero5.webp',
-                'images/hero/hero6.webp'
-            ];
-            const randomIndex = Math.floor(Math.random() * heroImages.length);
-            const heroBg = document.querySelector('.hero-bg');
-            if (heroBg) {
-                heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
-            }
-        })();
-    </script>
-
-    <!-- Shared Header & Footer Loader + Nav Behavior -->
-    <script>
-        // ------------------------------------------
-        // Load shared header and footer, THEN wire nav
-        // ------------------------------------------
-        Promise.all([
-            fetch('header.html').then(r => r.text()),
-            fetch('footer.html').then(r => r.text())
-        ])
-        .then(([headerHtml, footerHtml]) => {
-            // Inject header
-            const headerEl = document.getElementById('site-header');
-            if (headerEl) headerEl.innerHTML = headerHtml;
-
-            // Inject footer
-            const footerEl = document.getElementById('footer');
-            if (footerEl) footerEl.innerHTML = footerHtml;
-
-            // Now that header exists, wire nav behavior
-            const navbar   = document.getElementById('navbar');
-            const navLinks = document.getElementById('navLinks');
-
-            // ------------------------------------------
-            // Navbar scroll effect (80px -> blue)
-            // ------------------------------------------
-            if (navbar) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 80) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
-                    }
-                });
-            }
-
-            // ------------------------------------------
-            // Mobile nav toggle
-            // ------------------------------------------
-            window.toggleNav = function () {
-                if (navLinks) {
-                    navLinks.classList.toggle('active');
-                }
-            };
-
-            // Close mobile nav on link click
-            if (navLinks) {
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('active');
-                    });
-                });
-            }
-        })
-        .catch(err => console.error('Error loading header/footer', err));
-    </script>
+    .catch(err => console.error('Error loading header/footer', err));
+  </script>
 
 </body>
 </html>

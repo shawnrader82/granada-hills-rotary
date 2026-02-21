@@ -676,370 +676,91 @@ img {
 /* ============================================
    BUSINESS DIRECTORY
 ============================================ */
-
-/* Home page grid (Rotary Means Business section) */
 .directory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 .biz-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 1.8rem;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-  border-left: 4px solid transparent;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border-left: 4px solid transparent;
 }
 
 .biz-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-left-color: var(--rotary-gold);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-left-color: var(--rotary-gold);
 }
 
-/* Fixed-height top square for logos (home cards) */
-.biz-card-logo-wrap {
-  height: 180px; /* keep fixed height so cards line up */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  background: transparent;
-  border-radius: 0;
+.biz-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.biz-card-logo-wrap img {
-  max-height: 200px;
-  max-width: 100%;
-  object-fit: contain;
+.biz-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Bottom content area (home cards) */
-.biz-card-body {
-  display: flex;
-  flex-direction: column;
+.biz-info h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-800);
 }
 
-.biz-card-body h4 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--gray-800);
-  margin: 0 0 0.25rem;
+.biz-info span {
+    font-size: 0.8rem;
+    color: var(--gray-600);
 }
 
-.biz-member {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--gray-600);
-  margin-bottom: 0.75rem;
-}
-
-.biz-card-body p {
-  font-size: 0.85rem;
-  color: var(--gray-600);
-  margin-bottom: 1rem;
+.biz-card p {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
 }
 
 .biz-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
 .biz-tag {
-  background: var(--gray-100);
-  color: var(--rotary-blue);
-  padding: 0.2rem 0.6rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 600;
+    background: var(--gray-100);
+    color: var(--rotary-blue);
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .biz-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--rotary-light-blue);
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--rotary-light-blue);
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
 }
 
 .biz-link:hover {
-  color: var(--rotary-gold);
+    color: var(--rotary-gold);
 }
-
-/* ============================================
-   DIRECTORY PAGE LIST
-============================================ */
-
-/* Row-style directory list (full directory page) */
-.directory-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* One row per business */
-.directory-list-item {
-  display: grid;
-  grid-template-columns: auto 1fr auto; /* logo | main | actions */
-  gap: 1rem;
-  align-items: center;
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: var(--shadow-sm);
-}
-
-/* Logo column (keep current size) */
-.directory-list-logo {
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.directory-list-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-/* Main text column */
-.directory-list-main h4 {
-  margin: 0 0 0.2rem;
-  font-size: 1rem;
-  color: var(--gray-800);
-}
-
-.directory-list-member {
-  font-size: 0.85rem;
-  color: var(--gray-600);
-  margin-bottom: 0.4rem;
-}
-
-.directory-list-desc {
-  font-size: 0.85rem;
-  color: var(--gray-600);
-  margin-bottom: 0.3rem;
-}
-
-.directory-list-tags {
-  margin-top: 0.2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-/* Right actions column (list view) */
-.directory-list-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.4rem;
-}
-
-.directory-list-actions .biz-link {
-  font-size: 0.85rem;
-}
-
-/* Mobile: stack under logo */
-@media (max-width: 700px) {
-  .directory-list-item {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-  }
-  .directory-list-actions {
-    grid-column: 1 / -1;
-    align-items: flex-start;
-  }
-}
-
-/* Sort controls */
-.directory-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-
-.directory-sort-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--gray-700);
-}
-
-.directory-sort {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.sort-btn {
-  border: 1px solid var(--gray-300);
-  background: var(--white);
-  color: var(--gray-700);
-  font-size: 0.8rem;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.sort-btn:hover {
-  border-color: var(--rotary-light-blue);
-  color: var(--rotary-light-blue);
-  box-shadow: 0 0 0 1px rgba(0,80,160,0.08);
-}
-
-.sort-btn.sort-active {
-  background: var(--rotary-light-blue);
-  border-color: var(--rotary-light-blue);
-  color: #fff;
-  box-shadow: 0 4px 10px rgba(0,80,160,0.25);
-}
-
-/* ==========================================
-   Leadership cards
-   (photo left, name/role/years right, bio below)
-========================================== */
-.leader-card {
-  display: flex;
-  align-items: stretch;
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  margin-bottom: 1.25rem;
-  overflow: hidden;
-}
-
-.leader-card-inner {
-  display: flex;
-  width: 100%;
-}
-
-/* Photo on the left */
-.leader-photo {
-  flex: 0 0 auto;
-  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  background: #f5f7fb;
-}
-
-.leader-photo img {
-  width: 120px;              /* tweak to 140px if you prefer larger */
-  height: 120px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 8px;
-  display: block;
-}
-
-.leader-photo-placeholder {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  background: #f5f7fb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  color: #b0b7c5;
-}
-
-/* Text area on the right */
-.leader-info {
-  flex: 1 1 auto;
-  padding: 1.25rem 1.5rem 1.25rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Top row: name, role, years side by side */
-.leader-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.leader-header h3 {
-  margin: 0;
-}
-
-.leader-role {
-  font-weight: 600;
-  color: #0057a6;
-}
-
-.leader-term {
-  font-size: 0.9rem;
-  color: #6b7280;
-}
-
-/* Bio always below the header row */
-.leader-bio {
-  margin: 0.5rem 0 0;
-  font-size: 0.95rem;
-  color: #4b5563;
-}
-
-/* Year filter + subheadings on leadership page */
-.year-filter {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
-}
-
-.year-filter label {
-  font-weight: 600;
-}
-
-.year-filter select {
-  padding: 0.35rem 0.6rem;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-}
-
-.leadership-page .subheading {
-  margin: 1.5rem 0 0.75rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-/* Stack card on small screens */
-@media (max-width: 640px) {
-  .leader-card-inner {
-    flex-direction: column;
-  }
-
-  .leader-photo {
-    padding: 1.25rem 1.5rem 0;
-    justify-content: flex-start;
-  }
-
-  .leader-info {
-    padding: 0.75rem 1.5rem 1.25rem;
-  }
-}
-
 
 /* ============================================
    CTA & SPONSORS

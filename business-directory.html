@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Business Directory | Granada Hills Rotary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<!-- ==========================================
+     HEADER
+========================================== -->
+<!-- Anchor for "Home" link and logo -->
+<div id="top"></div>
+
+<header id="site-header"></header>
+
+<!-- ==========================================
+     PAGE HERO / TITLE
+========================================== -->
+<section class="section section-blue" style="padding-top:7rem; padding-bottom:4rem;">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2>Member Business Directory</h2>
+      <div class="accent-line"></div>
+      <p>
+        Support local businesses owned and operated by Granada Hills Rotarians — from professional services to neighborhood favorites across the San Fernando Valley.
+      </p>
+    </div>
+
+    <div
+      class="hero-buttons"
+      style="justify-content:center; margin-top:1.5rem;"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      
+      <a href="join.html" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i> Join Rotary
+      </a>
+    </div>
+  </div>
+</section>
+
+  <!-- ==========================================
+       BUSINESS DIRECTORY PAGE
+  ========================================== -->
+  <main>
+    <section class="section section-gray">
+      <div class="container">
+        <div class="section-header">
+          <h2>Member Business Directory</h2>
+          <div class="accent-line"></div>
+          <p>Explore businesses owned and operated by our Rotarians.</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="directory-controls">
+          <div class="directory-sort-label">Sort by:</div>
+          <div class="directory-sort">
+            <button type="button" data-sort="name" class="sort-btn sort-active">Business Name</button>
+            <button type="button" data-sort="member" class="sort-btn">Member Name</button>
+            <button type="button" data-sort="type" class="sort-btn">Type</button>
+          </div>
+        </div>
+
+        <!-- Compact list directory -->
+        <div class="directory-list" id="fullBizDirectory"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared footer will be injected here by main.js -->
+  <footer id="footer"></footer>
+
+  <!-- ==========================================
+       BUSINESS DIRECTORY SCRIPT
+  ========================================== -->
+  <script>
+    // ------------------------------------------
+    // Full business directory (list + sorting)
+    // ------------------------------------------
+    (function() {
+      const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwky-F823xy4srHN6lnU69362uIzr9NxHq9i-5d0Hoe7r9TijGJYs4t1sCXEaYRyXGW/exec?type=business';
+
+
+      let allBusinesses = [];
+
+      function createListItem(biz) {
+        const name = biz.Name || '';
+        const member = biz.Member || '';
+        const website = biz.Website || '#';
+        const logo = biz.LogoURL || '';
+        const description = biz.Description || '';
+        const tags = (biz.Tags || '').split(';').map(t => t.trim()).filter(Boolean);
+
+        const item = document.createElement('div');
+        item.className = 'directory-list-item';
+
+        item.innerHTML = `
+          <div class="directory-list-logo">
+            ${logo ? `<img src="${logo}" alt="${name} logo">` : ''}
+          </div>
+          <div class="directory-list-main">
+            <h4>${name}</h4>
+            ${member ? `<div class="directory-list-member">${member}</div>` : ''}
+            ${description ? `<div class="directory-list-desc">${description}</div>` : ''}
+            ${tags.length ? `
+              <div class="directory-list-tags">
+                ${tags.map(tag => `<span class="biz-tag">${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+          <div class="directory-list-actions">
+            <a class="biz-link" href="${website}" target="_blank" rel="noopener">
+              Visit Website <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        `;
+        return item;
+      }
+
+      function renderDirectory(list) {
+        const container = document.getElementById('fullBizDirectory');
+        if (!container) return;
+        container.innerHTML = '';
+        list.forEach(biz => {
+          const row = createListItem(biz);
+          container.appendChild(row);
+        });
+      }
+
+      // support name, member, and type
+      function sortBy(field) {
+        const sorted = allBusinesses.slice().sort((a, b) => {
+          let av = '';
+          let bv = '';
+
+          if (field === 'name') {
+            av = a.Name || '';
+            bv = b.Name || '';
+          } else if (field === 'member') {
+            av = a.Member || '';
+            bv = b.Member || '';
+          } else if (field === 'type') {
+            const aTags = (a.Tags || '').split(';').map(t => t.trim()).filter(Boolean);
+            const bTags = (b.Tags || '').split(';').map(t => t.trim()).filter(Boolean);
+            av = aTags[0] || '';
+            bv = bTags[0] || '';
+          }
+
+          return av.localeCompare(bv, undefined, { sensitivity: 'base' });
+        });
+        renderDirectory(sorted);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        fetch(ENDPOINT)
+          .then(res => res.json())
+          .then(rows => {
+            if (!Array.isArray(rows)) return;
+            allBusinesses = rows;
+            renderDirectory(allBusinesses);
+          })
+          .catch(err => {
+            console.error('Error loading full business directory:', err);
+          });
+
+        const sortContainer = document.querySelector('.directory-sort');
+        if (sortContainer) {
+          sortContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('button[data-sort]');
+            if (!btn) return;
+            const key = btn.getAttribute('data-sort');
+
+            // move blue highlight
+            sortContainer.querySelectorAll('.sort-btn').forEach(b => {
+              b.classList.remove('sort-active');
+            });
+            btn.classList.add('sort-active');
+
+            sortBy(key);
+          });
+        }
+      });
+    })();
+  </script>
+
+  <!-- ==========================================
+       Smooth scroll + hero (optional, matches index)
+  ========================================== -->
+  <script>
+    // Smooth scroll for internal anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Random hero image on each page load
+    (function() {
+      const heroImages = [
+        'images/hero/hero1.webp',
+        'images/hero/hero2.webp',
+        'images/hero/hero3.webp',
+        'images/hero/hero4.webp',
+        'images/hero/hero5.webp',
+        'images/hero/hero6.webp'
+      ];
+      const randomIndex = Math.floor(Math.random() * heroImages.length);
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        heroBg.style.backgroundImage = "url('" + heroImages[randomIndex] + "')";
+      }
+    })();
+  </script>
+
+  <!-- ==========================================
+       Shared Header & Footer Loader + Nav
+  ========================================== -->
+  <script>
+    // Load shared header and footer, THEN wire nav (same as index.html)
+    Promise.all([
+      fetch('header.html').then(r => r.text()),
+      fetch('footer.html').then(r => r.text())
+    ])
+    .then(([headerHtml, footerHtml]) => {
+      const headerEl = document.getElementById('site-header');
+      if (headerEl) headerEl.innerHTML = headerHtml;
+
+      const footerEl = document.getElementById('footer');
+      if (footerEl) footerEl.innerHTML = footerHtml;
+
+      const navbar   = document.getElementById('navbar');
+      const navLinks = document.getElementById('navLinks');
+
+      if (navbar) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 80) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      }
+
+      window.toggleNav = function () {
+        if (navLinks) {
+          navLinks.classList.toggle('active');
+        }
+      };
+
+      if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+          });
+        });
+      }
+    })
+    .catch(err => console.error('Error loading header/footer', err));
+  </script>
+</body>
+</html>
+

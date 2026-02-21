@@ -54,8 +54,6 @@
 </head>
 <body>
 
-<body>
-
 <!-- ==========================================
          HEADER
     ========================================== -->
@@ -289,90 +287,23 @@
      MEMBER BUSINESS DIRECTORY
 ========================================== -->
 <section class="section section-gray" id="directory">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Rotary Means Business</h2>
-            <div class="accent-line"></div>
-            <p>Support our members — trusted local professionals serving Granada Hills.</p>
-        </div>
-
-        <div class="directory-grid">
-            <!-- The Matt Horn Group -->
-            <a class="biz-card" href="https://www.thematthorngroup.com/" target="_blank" rel="noopener" data-aos="fade-up">
-                <div class="biz-card-header">
-                    <div class="biz-logo">
-                        <img src="images/logos/matt-horn-group-logo.webp"
-                             alt="The Matt Horn Group Logo">
-                    </div>
-                    <div class="biz-info">
-                        <h4>The Matt Horn Group</h4>
-                        <span>Matt Horn, Rotarian</span>
-                    </div>
-                </div>
-                <p>Granada Hills real estate experts helping families buy and sell homes across the San Fernando Valley with local insight and personal service.</p>
-                <div class="biz-tags">
-                    <span class="biz-tag">Real Estate</span>
-                    <span class="biz-tag">Northridge</span>
-                </div>
-                <span class="biz-link">
-                    Visit Website <i class="fas fa-external-link-alt"></i>
-                </span>
-            </a>
-
-            <!-- California Music Box -->
-            <a class="biz-card" href="http://www.camusicbox.com/" target="_blank" rel="noopener" data-aos="fade-up" data-aos-delay="100">
-                <div class="biz-card-header">
-                    <div class="biz-logo">
-                        <img src="images/logos/ca-music-box-logo.webp"
-                             alt="California Music Box Logo">
-                    </div>
-                    <div class="biz-info">
-                        <h4>California Music Box</h4>
-                        <span>Rotarian Member</span>
-                    </div>
-                </div>
-                <p>Local music hub offering instruments, lessons, and expert support for musicians and students throughout the Granada Hills area.</p>
-                <div class="biz-tags">
-                    <span class="biz-tag">Music</span>
-                    <span class="biz-tag">Granada Hills</span>
-                </div>
-                <span class="biz-link">
-                    Visit Website <i class="fas fa-external-link-alt"></i>
-                </span>
-            </a>
-
-            <!-- Mobile American Notary & Apostilles -->
-            <a class="biz-card" href="https://www.mobileamericannotary.com" target="_blank" rel="noopener" data-aos="fade-up" data-aos-delay="200">
-                <div class="biz-card-header">
-                    <div class="biz-logo">
-                        <img src="images/logos/mobile-american-notary-logo.webp"
-                             alt="Mobile American Notary & Apostilles Logo">
-                    </div>
-                    <div class="biz-info">
-                        <h4>Mobile American Notary & Apostilles</h4>
-                        <span>Rotarian Member</span>
-                    </div>
-                </div>
-                <p>Mobile notary, apostille, Live Scan fingerprinting, and document translation coordination serving Los Angeles, Orange, and Ventura Counties.</p>
-                <div class="biz-tags">
-                    <span class="biz-tag">Notary & Apostille</span>
-                    <span class="biz-tag">Los Angeles</span>
-                </div>
-                <span class="biz-link">
-                    Visit Website <i class="fas fa-external-link-alt"></i>
-                </span>
-            </a>
-        </div>
-
-        <div class="text-center mt-2" data-aos="fade-up">
-            <a href="business-directory.html" class="btn btn-primary" style="margin-top: 2rem">
-                View Full Directory <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2>Rotary Means Business</h2>
+      <div class="accent-line"></div>
+      <p>Support our members — trusted local professionals serving Granada Hills.</p>
     </div>
+
+    <!-- JS will inject 3 random businesses here -->
+    <div class="directory-grid" id="homeBizDirectory"></div>
+
+    <div class="text-center mt-2" data-aos="fade-up">
+      <a href="business-directory.html" class="btn btn-primary" style="margin-top: 2rem">
+        View Full Directory <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
 </section>
-
-
 
     <!-- ==========================================
          JOIN / CTA
@@ -685,6 +616,84 @@
         })
         .catch(err => console.error('Error loading header/footer', err));
     </script>
+
+<!-- ==========================================
+     BUSINESS DIRECTORY SCRIPT
+========================================== -->
+<script>
+  // ------------------------------------------
+  // Rotary Means Business (home page random cards)
+  // ------------------------------------------
+  (function() {
+    // NEW combined Apps Script endpoint for business directory
+    const ENDPOINT =
+      'https://script.google.com/macros/s/AKfycbwky-F823xy4srHN6lnU69362uIzr9NxHq9i-5d0Hoe7r9TijGJYs4t1sCXEaYRyXGW/exec?type=business';
+
+    function createBizCard(biz) {
+      const name = biz.Name || '';
+      const member = biz.Member || '';
+      const website = biz.Website || '#';
+      const logo = biz.LogoURL || '';
+      const description = biz.Description || '';
+      const tags = (biz.Tags || '').split(';').map(t => t.trim()).filter(Boolean);
+
+      const a = document.createElement('a');
+      a.className = 'biz-card';
+      a.href = website;
+      a.target = '_blank';
+      a.rel = 'noopener';
+
+      a.innerHTML = `
+        <div class="biz-card-logo-wrap">
+          ${logo ? `<img src="${logo}" alt="${name} logo">` : ''}
+        </div>
+        <div class="biz-card-body">
+          <h4>${name}</h4>
+          ${member ? `<span class="biz-member">${member}</span>` : ''}
+          ${description ? `<p>${description}</p>` : ''}
+          <div class="biz-tags">
+            ${tags.map(tag => `<span class="biz-tag">${tag}</span>`).join('')}
+          </div>
+          <span class="biz-link">
+            Visit Website <i class="fas fa-external-link-alt"></i>
+          </span>
+        </div>
+      `;
+      return a;
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('homeBizDirectory');
+      if (!container) return;
+
+      fetch(ENDPOINT)
+        .then(res => res.json())
+        .then(rows => {
+          if (!Array.isArray(rows)) return;
+
+          const picked = shuffle(rows.slice()).slice(0, 3); // change 3 to 6 for six cards
+          container.innerHTML = '';
+          picked.forEach(biz => {
+            const card = createBizCard(biz);
+            container.appendChild(card);
+          });
+        })
+        .catch(err => {
+          console.error('Error loading business directory:', err);
+        });
+    });
+  })();
+</script>
+
+
 
 </body>
 </html>
